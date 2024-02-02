@@ -1,0 +1,51 @@
+/* Background color to top navigation*/
+.topnav {
+  display:flex;
+  justify-content:center;
+    background-color: #CCBAE5;
+    overflow: hidden;
+  border-radius:12px;
+  border:2px solid #D9738F;
+  
+  padding-top:5px;
+  padding-bottom:5px;
+  }
+  
+  /* style for links inside navigation bar */
+  .topnav a {
+    color: #080808;
+    margin-left:50px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  /* change color on hover */
+  .topnav a:hover {
+    background-color: #90EB85;
+    color: black;
+  }
+  
+  /* adding color to current active link */
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  /*customising the second navigation bar*/
+  .secondnav
+  {
+  margin-left:950px;
+  }
+  
+  .logoutbutton {
+    background-color: darkorange;
+  border-radius: 10px;
+    border: none;
+    color: white;
+    padding:5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+  }

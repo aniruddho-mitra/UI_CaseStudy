@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ecf0f5;
+      color: #ffffff;
+    }
+
+    .top-bar {
+      background-color: #3498db;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .main-container {
+      margin: 20px;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    .form-section {
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #3498db;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn {
+      background-color: #3498db;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-reset {
+      background-color: #e74c3c;
+    }
+
+    /* Arrange fields horizontally within a section */
+    .form-section input,
+    .form-section select {
+      display: inline-block;
+      width: calc(50% - 5px);
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1 style="color: #ffffff;">Register New User</h1>
+</div>
+
+<div class="main-container">
+  <div class="form-section">
+    <div class="section-header">Consumer Details</div>
+    <label for="consumerNumber">Consumer Number<span style="color: red;">*</span></label>
+    <input type="text" id="consumerNumber" required>
+    
+    <label for="billNumber">Bill Number<span style="color: red;">*</span></label>
+    <input type="text" id="billNumber" required>
+  </div>
+
+  <div class="form-section">
+    <div class="section-header">User Details</div>
+    <label for="title">Title</label>
+    <select id="title">
+      <option value="Mr.">Mr.</option>
+      <option value="Ms.">Ms.</option>
+      <option value="Mrs.">Mrs.</option>
+    </select>
+
+    <label for="name">Name</label>
+    <input type="text" id="name">
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email">
+
+    <label for="phoneNumber">Phone Number</label>
+    <input type="tel" id="phoneNumber">
+
+    <label for="countryCode">Country Code</label>
+    <input type="text" id="countryCode">
+  </div>
+
+  <div class="form-section">
+    <div class="section-header">Login Details</div>
+    <label for="userId">User ID</label>
+    <input type="text" id="userId">
+
+    <label for="password">Password</label>
+    <input type="password" id="password">
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword">
+  </div>
+
+  <button class="btn" onclick="registerUser()">Register</button>
+  <button type="button" class="btn btn-reset" onclick="resetForm()">Reset</button>
+</div>
+
+<script>
+  function registerUser() {
+    // Add your registration logic here
+    alert("User registered!");
+  }
+
+  function resetForm() {
+    // Clear all form fields
+    var inputs = document.querySelectorAll('input, select');
+    inputs.forEach(function(input) {
+      input.value = '';
+    });
+  }
+</script>
+
+</body>
+</html>

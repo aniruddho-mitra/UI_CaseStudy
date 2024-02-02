@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Payment Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <span id="welcome">Welcome,<span id="username">John doe</span></span>
+        <button onclick="logout()">Logout</button>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Pay Bill</a></li>
+          <li><a href="#">Register Compliant</a></li>
+          <li><a href="#">Compliant Status</a></li>
+        </ul>
+      </div>
+      <div class="payment-section">
+        <h2>Payment Details</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Consumer Number</th>
+              <th>Select</th>
+              <th>Due Amount</th>
+              <th>Payable Amount</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td>123456</th>
+            <td><input type="checkbox" class="select-checkbox"></td>
+            <td><span>&#8377;</span> 100</td>
+            <td><span>&#8377;</span> 105</td>
+          </tr>
+          <tr>
+            <td>789012</td>
+            <td><input type="checkbox" class ="select-checkbox"></td>
+            <td><span>&#8377;</span> 150</td>
+            <td><span>&#8377;</span> 155</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="totalAmountPayable">Total Amount Payable:<span>&#8377;</span> 0 </div>
+      <button onclick="proceedToPay()">Proceed To Pay</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  </body>
+</html>
