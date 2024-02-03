@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>View Bill</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h4 {
+            background-color: #d1ecf1;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-section label {
+            font-weight: bold;
+            display: inline-block;
+            width: 40%;
+        }
+
+        .form-section select,
+        .form-section input {
+            width: 40%;
+            margin-top: 5px;
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 8px;
+        }
+
+        .form-section select#countryCode {
+            width: 20%;
+        }
+
+        .form-section input#mobileNumber {
+            width: 35%;
+        }
+
+        .form-section input#email {
+            width: 59%;
+        }
+
+        .form-section-left {
+            float: left;
+            width: 45%;
+        }
+
+        .form-section-right {
+            float: right;
+            width: 45%;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .hr-line {
+            border-top: 1px solid #ccc;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .table-section {
+            margin-top: 20px;
+        }
+
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table-section th, .table-section td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .button-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-section button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button-section button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="form-section">
+            <h4>Consumer Details</h4>
+            <div class="form-section-left">
+                <label for="consumerNumber">Consumer Number:</label>
+                <input type="text" id="consumerNumber" disabled>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <hr class="hr-line">
+
+        <div class="table-section">
+            <h4>Payment Method</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Consumer Number</th>
+                        <th>Select</th>
+                        <th>Due Amount</th>
+                        <th>Payable</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="viewConsumerNumber"></td>
+                        <td><input type="checkbox" id="selectRow1" onclick="calculateAmount()"></td>
+                        <td>1500</td>
+                        <td id="payableAmount1">1500</td>
+                    </tr>
+                    <tr>
+                        <td>1234567890123</td>
+                        <td><input type="checkbox" id="selectRow2" onclick="calculateAmount()"></td>
+                        <td>500</td>
+                        <td id="payableAmount2">500</td>
+                    </tr>
+                    <tr>
+                        <td>9876543210987</td>
+                        <td><input type="checkbox" id="selectRow3" onclick="calculateAmount()"></td>
+                        <td>0</td>
+                        <td id="payableAmount3">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>Total Payable Amount = <span id="totalPayableAmount">0</span></h5>
+        </div>
+
+        <div class="button-section">
+            <button type="button" onclick="proceedToPay()">Proceed to Pay</button>
+        </div>
+    </div>
+
+    <script>
+
+        var consumerNumber = sessionStorage.getItem('consumerNumber');
+        var totalPayableAmount = 0;
+
+        document.getElementById('consumerNumber').value = consumerNumber;
+
+        document.getElementById('viewConsumerNumber').innerText = consumerNumber;
+    
+        function calculateAmount() {
+            var totalAmount = 0;
+    
+            for (var i = 1; i <= 3; i++) {
+                var checkbox = document.getElementById('selectRow' + i);
+                var payableAmount = document.getElementById('payableAmount' + i);
+    
+                if (checkbox.checked) {
+                    totalAmount += parseInt(payableAmount.innerText);
+                }
+            }
+    
+        
+            document.getElementById('totalPayableAmount').innerText = totalAmount;
+    
+     
+            sessionStorage.setItem('totalPayableAmountFromView', totalAmount);
+        }
+    
+        function proceedToPay() {
+
+            var totalPayableAmount = document.getElementById('totalPayableAmount').innerText;
+            sessionStorage.setItem('totalPayableAmount', totalPayableAmount);
+
+            window.location.href = 'PayBill.html';
+        }
+    </script>
+</body>
+</html>

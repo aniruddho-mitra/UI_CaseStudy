@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Bill Payment</title>
+    <link rel="stylesheet" href="NavbarDesign.css">
+    <style>
+        body {
+        
+            font-family: Arial, sans-serif;
+        }
+
+        .payment-section,
+        .table-section,
+        .button-section {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid #dee2e6;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3593f7;
+            color: white;
+        }
+
+        .button-section {
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2 style="margin-left: 42px; color: brown;">Quick EBill</h2>
+      <div class="topnav">
+        <a href="navbar.html">HOME</a>
+        <a href="PaymentDetails.html">PAY BILL</a>
+        <a href="FileComplaint.html">REGISTER COMPLAINT</a>
+        <a href="CheckComplaint.html">COMPLAINT STATUS</a>
+      </div>    
+      <div class="secondnav">
+        <p style="font-size: 18px"><b>Welcome:</b><label id="custname"></label>      
+      <a href="LoginPage.html"><button class="logoutbutton" type="button">LOGOUT</button></a></p>
+      </div>
+
+
+    <div class="container">
+        <div class="payment-section">
+            <h4>Bill Payment</h4>
+            <h5>For Detailed Payment Instructions</h5>
+            <button class="btn btn-primary">View PDF</button>
+        </div>
+
+  
+        <div class="table-section">
+            <h4 style="background-color: gray; color: white; padding: 10px;">Bill Details</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Bill Amount</th>
+                        <th>Total Payable Amount</th>
+                        <th>PG Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="color: red; background-color: rgba(128, 128, 128, 0.7);">
+                        <td><span id="billAmount"></span></td>
+                        <td><span id="totalPayableAmount"></span></td>
+                        <td>As Applicable</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+  
+        <div class="table-section">
+            <h4>Payment Details</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Consumer Number</th>
+                        <th>Bill Number</th>
+                        <th>Payable Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="consumerNumberFromView"></td>
+                        <td id="billNumber"></td>
+                        <td id="payableAmountFromViewSmallTable"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="payment-section" style="text-align: center;">
+            <h4>Kindly Select your Mode of Payment</h4>
+            <input type="radio" id="creditCard" name="paymentMode" value="Credit Card">
+            <label for="creditCard">Credit Card</label>
+            <input type="radio" id="debitCard" name="paymentMode" value="Debit Card">
+            <label for="debitCard">Debit Card</label>
+        </div>
+
+        <div class="button-section">
+            <button type="button" class="btn btn-primary" onclick="proceedToPayment()">Pay now</button>
+            <button type="button" class="btn btn-secondary" onclick="goToHomePage()">Back to Home</button>
+        </div>
+    </div>
+
+    <script>
+
+window.onload = function() {
+  document.querySelector("#consumerNumberFromView").innerHTML=sessionStorage.getItem("connum");
+  document.querySelector("#custname").innerHTML=sessionStorage.getItem("name");
+  document.querySelector("#billNumber").innerHTML=sessionStorage.getItem("billno");
+  document.querySelector("#payableAmountFromViewSmallTable").innerHTML=sessionStorage.getItem("totalamtpayable");
+  document.querySelector("#billAmount").innerHTML=sessionStorage.getItem("totalamtpayable");
+  document.querySelector("#totalPayableAmount").innerHTML=sessionStorage.getItem("totalamtpayable");
+};
+
+        var totalPayableAmount = sessionStorage.getItem('totalPayableAmount');
+        var consumerNumber = sessionStorage.getItem('consumerNumber');
+
+        document.getElementById('billAmount').innerText = totalPayableAmount;
+        document.getElementById('totalPayableAmount').innerText = totalPayableAmount;
+        document.getElementById('payableAmountFromViewSmallTable').innerText = totalPayableAmount;
+
+        // Extract the last five digits of the consumer number
+        var lastFiveDigits = consumerNumber.slice(-5);
+
+        document.getElementById('consumerNumberFromView').innerText = consumerNumber;
+        document.getElementById('billNumber').innerText = lastFiveDigits; // Displaying last five digits as Bill number
+
+        function proceedToPayment() {
+            var paymentMode = document.querySelector('input[name="paymentMode"]:checked');
+            if (paymentMode) {
+                if (paymentMode.value === 'Credit Card') {
+                    sessionStorage.setItem('paymentAmount', totalPayableAmount);
+                    window.location.href = 'credit.html';
+                } else if (paymentMode.value === 'Debit Card') {
+                    window.location.href = 'debit.html';
+                }
+            }
+           
+        }
+
+        function goToHomePage() {
+            window.location.href = 'NavBar.html';
+        }
+    </script>
+</body>
+
+</html>

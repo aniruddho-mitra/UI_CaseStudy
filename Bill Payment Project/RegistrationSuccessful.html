@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <link rel="stylesheet" href="RegSuccessfulDesign.css">
+</head>
+<body onload="cnum()">
+    <div class="success-container">
+        <h1 style="color:green;">Consumer Registration successful.</h1></div>
+        <p class="success-message">Thank you for registering with Ebill application</p>
+        <hr>
+        <div class="customer-info">
+            <p id="cid"></p>
+            <p><strong>Customer Name:</strong><label id="cname"></label></p>
+            <p><strong>Customer Mobile Number:</strong><label id="phonenum"></label></p>
+        </div>
+        <div class="fcontainer">
+        <a href="LoginPage.html"><button class="fitem">Back to Login</button></a>
+        </div>
+    <script>
+function cnum(){
+var minm = 1000000000000; 
+            var maxm = 9999999999999;
+const uniqcnum=Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+document.querySelector("#cid").innerHTML=`<strong>Customer ID:</strong>` + uniqcnum;
+document.querySelector("#cname").textContent=sessionStorage.getItem("name");
+document.querySelector("#phonenum").textContent=sessionStorage.getItem("number");
+}
+</script>
+</body>
+</html>

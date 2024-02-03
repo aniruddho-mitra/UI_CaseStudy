@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="CRDesign.css" />
+  </head>
+  <body>
+     <div id="div1_1">Register New User</div>
+<form id="form" action="RegistrationSuccessful.html" method="post" onsubmit="return save()">
+  <div class="heading">Consumer Details</div>
+  <hr/>
+
+<div class="fcontainer">
+  <div class="fitem1">Consumer Number: <input type="number" id="connum" onKeyPress="if(this.value.length==13) return false;" required></div>
+  <div class="fitem2">Bill Number:  <input type="number" id="billno" onKeyPress="if(this.value.length==5) return false;" required></div>
+</div>
+<br>
+<br>
+
+  <div class="heading">User Details</div>
+  <hr/>
+<div class="fcontainer">
+  <div class="fitem1">Title <select id="title"> 
+        <option value="Mr.">Mr.</option> 
+        <option value="Ms.">Ms.</option> 
+        <option value="Mrs.">Mrs.</option> 
+    </select></div>
+  <div class="fitem2">Name:  <input type="text" id="name" maxlength="50" required></div></div>
+<br>
+  <div class="fcontainer">
+ <div class="fitem1">Email Id:  <input type="email" id="email" required></div> 
+ <div class="fitem2">Mobile Number:
+  <select>
+    <option>+91(INDIA)</option>
+    <option>+92(PAKISTAN)</option>
+    <option>+93(AFGHANISTAN)</option>
+  </select>
+  <input type="number" id="number" onKeyPress="if(this.value.length==10) return false;" required></div> 
+</div>
+<br>
+<br>
+  
+  <div class="heading"> Login Details</div>
+    <hr/>
+    <div class="fcontainer">
+      <div class="fitem1">User Id: <input type="text" id="userid" minlength="5" maxlength="20" required></div>
+      <div class="fitem2">Password:<input type="password" id="password" maxlength="30" required></div>
+      </div>
+<br>
+      <div class="fcontainer2">
+       <div class="fitem2">Confirm Password:<input type="password" id="checkpassword" required></div>
+      </div>
+   
+<br>
+
+<div class="buttons">
+  <button type="reset" style="background-color: darkgrey; border-radius: 4px; padding: 5px;">Reset</button>
+  <button type="submit" style="background-color: blue; border-radius: 4px; padding: 5px; color: white;" >Register</button></div>
+</form>
+
+     <script>
+
+function save(){
+if((document.getElementById("billno").value.length!=5) || (document.getElementById("connum").value.length!=13) || 
+(document.getElementById("number").value.length!=10))
+{
+alert("Ensure 5 digits for Bill Number,13 digits for Consumer Number and 10 digits for phone valid.");return false;}
+else if(document.getElementById("password").value != document.getElementById("checkpassword").value)
+{
+alert("Password and check password field should be the same");
+return false;
+}
+else
+{
+	sessionStorage.setItem("email",document.getElementById("email").value);
+sessionStorage.setItem("name",document.getElementById("name").value);
+sessionStorage.setItem("number",document.getElementById("number").value);
+sessionStorage.setItem("userid",document.getElementById("userid").value);
+sessionStorage.setItem("password",document.getElementById("password").value);
+sessionStorage.setItem("title",document.getElementById("title").value);
+sessionStorage.setItem("connum",document.getElementById("connum").value);
+sessionStorage.setItem("billno",document.getElementById("billno").value);
+return true;
+}
+}
+
+
+</script>
+  </body>
+</html>
