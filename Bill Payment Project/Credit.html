@@ -128,7 +128,9 @@
     </form>
 
     <script>
-
+window.onload=function(){
+    document.querySelector("#totalPaymentPlaceholder").innerHTML=sessionStorage.getItem("totalamtpayable");
+};
 
         function makePayment() {
  
