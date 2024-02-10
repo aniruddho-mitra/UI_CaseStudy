@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="navbarDesign.css">
+    <title>Payment Page</title>
+  </head>
+  <body>
+    <h2 style="margin-left: 42px; color: brown;">Quick EBill</h2>
+      <div class="topnav">
+  <a href="navbar.html">HOME</a>
+  <a href="PaymentDetails.html">PAY BILL</a>
+  <a href="RegisterComplaint.html">REGISTER COMPLAINT</a>
+  <a href="CheckComplaint.html">COMPLAINT STATUS</a>
+</div>
+<div class="secondnav">
+  <p style="font-size: 18px"><b>Welcome:</b><label id="custname"></label>      
+<a href="LoginPage.html"><button class="logoutbutton" type="button">LOGOUT</button></a></p>
+</div>
+
+    <div class="ViewBillHeader" style="background-color: rgb(57, 57, 218); color: white; padding: 10px; font-size: large; border-radius: 12px; text-align: center;">View Bill & Pay</div>
+
+      <div class="payment-section">
+        <table style="width: 100%;">
+          <thead style="background-color:gray; color: white;">
+            <tr>
+              <th style="padding: 10px;">Consumer Number</th>
+              <th style="padding: 10px;">Select</th>
+              <th style="padding: 10px;">Due Amount</th>
+              <th style="padding: 10px;">Payable Amount</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr style="text-align: center;">
+            <td id="consumerid"></td>
+            <td><input type="checkbox" class="select-checkbox"></td>
+            <td><span>&#8377;</span> 100</td>
+            <td><span>&#8377;</span> 105</td>
+          </tr>
+          <tr style="text-align: center;">
+            <td id="consumerid2"></td>
+            <td><input type="checkbox" class ="select-checkbox"></td>
+            <td><span>&#8377;</span> 150</td>
+            <td><span>&#8377;</span> 155</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="totalAmountPayable" style="text-align: right; font-size: large; color: red; margin-top: 5px; font-weight: bold;">Amount Payable:0</div>
+      <div class="buttondiv" style="text-align: center; "><button style="background-color: blue; color: white; border-radius:4px; font-size:smaller; font-weight: bold;" onclick="proceedToPay()">Proceed To Pay</button></div>
+    </div>
+  <script src="PaymentDetails.js"></script>
+  </body>
+</html>

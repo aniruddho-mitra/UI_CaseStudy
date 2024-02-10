@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Option</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h5, h6 {
+            margin-bottom: 10px;
+        }
+
+        hr {
+            margin: 20px 0;
+            border: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group-inline {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .form-group-inline .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .mt-3 a {
+            color: #007bff;
+        }
+
+        .mt-3 a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="paymentForm">
+        <h5>Payment Option</h5>
+
+    
+        <h6 class="text-left">Total Payment: <span id="totalPaymentPlaceholder"></span></h6>
+
+        <h6 id="PayBy" class="text-left">Pay By Credit Card</h6>
+
+        <hr>
+
+        <div class="form-group">
+            <label for="cardNumber">Card Number</label>
+            <input type="text" class="form-control" id="cardNumber" placeholder="Enter 16-digit card number" required maxlength="16" pattern="\d*">
+        </div>
+
+        <div class="form-group-inline">
+            <div class="form-group">
+                <label for="expirationMonth">Expiration Date</label>
+                <input type="text" class="form-control" id="expirationMonth" placeholder="MM" required maxlength="2" pattern="\d*">
+            </div>
+            <div class="form-group">
+                <label for="expirationYear">&nbsp;</label>
+                <input type="text" class="form-control" id="expirationYear" placeholder="YYYY" required maxlength="4" pattern="\d*">
+            </div>
+            <div class="form-group">
+                <label for="cvv">CVV/CVC</label>
+                <input type="text" class="form-control" id="cvv" placeholder="Enter 3-digit CVV/CVC" required maxlength="3" pattern="\d*">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="customerName">Customer Name</label>
+            <input type="text" class="form-control" id="customerName" placeholder="Enter customer name" maxlength="30" pattern="[A-Za-z ]+" required>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block" onclick="makePayment()">Make Payment</button>
+
+        <!--<p class="mt-3"><a href="PaymentDetails.html" id="cancelLink">Cancel</a></p>-->
+        <a href="PayBill.html"><button style="margin-top: 5px;"type="button" class="btn btn-primary btn-block">Cancel</button></a>
+    </form>
+
+    <script>
+window.onload=function(){
+    document.querySelector("#totalPaymentPlaceholder").innerHTML=sessionStorage.getItem("totalamtpayable");
+};
+
+        function makePayment() {
+ 
+            var cardNumberInput = document.getElementById('cardNumber');
+            if (!/^\d{16}$/.test(cardNumberInput.value)) {
+                alert('Please enter a valid 16-digit card number.');
+                return;
+            }
+
+   
+            var expirationMonthInput = document.getElementById('expirationMonth');
+            var expirationYearInput = document.getElementById('expirationYear');
+            if (!/^\d{2}$/.test(expirationMonthInput.value) || !/^\d{4}$/.test(expirationYearInput.value)) {
+                alert('Please enter valid expiration date (MM and YYYY).');
+                return;
+            }
+
+  
+            var cvvInput = document.getElementById('cvv');
+            if (!/^\d{3}$/.test(cvvInput.value)) {
+                alert('Please enter a valid 3-digit CVV/CVC.');
+                return;
+            }
+
+
+            var customerNameInput = document.getElementById('customerName');
+            if (!/^[A-Za-z ]+$/.test(customerNameInput.value)) {
+                alert('Please enter a valid customer name (only alphabets and spaces).');
+                return;
+            }
+
+   
+            window.location.href = 'PaymentSuccess.html';
+        }
+
+        document.getElementById('cancelLink').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('paymentForm').reset();
+        });
+
+        // Retrieve the payment amount from sessionStorage
+        var paymentAmount = sessionStorage.getItem('paymentAmount');
+
+        // Display the payment amount on the page
+        document.getElementById('totalPaymentPlaceholder').innerText = paymentAmount;
+    </script>
+</body>
+
+</html>
